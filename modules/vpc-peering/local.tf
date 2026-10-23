@@ -1,0 +1,42 @@
+#######################################
+# Local values for VPC Peering Demo
+######################################
+locals {
+#############################################
+# User data template for Mumbai instance
+#############################################
+ mumbai_vpc_instance_user_data = <<-EOF
+    #!/bin/bash
+    apt-get update -y
+    apt-get install -y apache2
+    systemctl start apache2
+    systemctl enable apache2
+    echo "<h1>Primary VPC Instance - ${var.mumbai_vpc_region}</h1>" > /var/www/html/index.html
+    echo "<p>Private IP: $(hostname -I)</p>" >> /var/www/html/index.html
+  EOF
+
+ #############################################
+# User data template for Singapore instance
+#############################################
+ singapore_vpc_instance_user_data = <<-EOF
+    #!/bin/bash
+    apt-get update -y
+    apt-get install -y apache2
+    systemctl start apache2
+    systemctl enable apache2
+    echo "<h1>Secondary VPC Instance - ${var.singapore_vpc_region}</h1>" > /var/www/html/index.html
+    echo "<p>Private IP: $(hostname -I)</p>" >> /var/www/html/index.html
+  EOF
+#############################################
+# User data template for Virginia instance
+#############################################
+  virginia_vpc_instance_user_data = <<-EOF
+    #!/bin/bash
+    apt-get update -y
+    apt-get install -y apache2
+    systemctl start apache2
+    systemctl enable apache2
+    echo "<h1>Secondary VPC Instance - ${var.singapore_vpc_region}</h1>" > /var/www/html/index.html
+    echo "<p>Private IP: $(hostname -I)</p>" >> /var/www/html/index.html
+  EOF
+}
