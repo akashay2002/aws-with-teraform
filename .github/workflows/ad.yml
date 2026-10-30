@@ -1,0 +1,12 @@
+name: main branach push auto trigger pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  say-hello-inline-bash:
+    runs-on: windows-2025
+    steps:
+      - run: echo "this pipline will automatically get triggerd"  
